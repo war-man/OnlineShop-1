@@ -1,0 +1,16 @@
+﻿@model List<ShopOnline.Model.CartModel.CartItem>
+@if (Model == null)
+{
+    <div>Không có sản phẩm nào</div>
+}
+else
+{
+    @foreach (var product in Model)
+    {
+        <li class="item">
+            <input type="hidden" value="2173" class="compare-item-id">
+            <a class="jtv-btn-remove" title="Remove This Item" href="#"></a> <a href="#" class="product-name"><i class="fa fa-angle-right"></i>@product.ProductViewModel.Name</a>
+        </li>
+    }
+
+}

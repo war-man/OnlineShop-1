@@ -1,0 +1,92 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+    <script src="~/admin-js/chart/index.js" asp-append-version="true"></script>
+    <script>
+        var test = new ChartControl();
+        test.init();
+    </script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+        google.charts.load('current', {
+            packages: ['corechart', 'bar']
+        });
+        google.charts.setOnLoadCallback(LoadData);
+
+        function LoadData() {
+            $.ajax({
+                url: '/Admin/Chart/GetAllChart',
+                dataType: "json",
+                type: "GET",
+                success: function (res) {
+                    var data = res.data;
+                    PopulationChart(data);
+                    return false;
+                }
+            });
+            return false;
+        }
+        function PopulationChart(data) {
+            var dataArray = [
+                ['Total', 'Revenue', 'Profit']
+            ];
+            $.each(data, function (i, item) {
+                dataArray.push([item.dateCreated, item.revenue, item.profit]);
+            });
+            var data = google.visualization.arrayToDataTable(dataArray);
+            var options = {
+                title: 'Population of Largest Cities of Odisha ',
+                chartArea: {
+                    width: '50%'
+                },
+                colors: ['#b0120a', '#7b1fa2'],
+                hAxis: {
+                    title: 'Revent and Profit',
+                    minValue: 0
+                },
+                vAxis: {
+                    title: 'Total Population'
+                }
+            };
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+            var chart1 = new google.visualization.LineChart(document.getElementById('chart_div1'));
+            var chart2 = new google.visualization.PieChart(document.getElementById('chart_div2'));
+            var chart3 = new google.visualization.AreaChart(document.getElementById('chart_div3'));
+            var chart4 = new google.visualization.BarChart(document.getElementById('chart_div4'));
+            chart.draw(data, options);
+            chart1.draw(data, options);
+            chart2.draw(data, options);
+            chart3.draw(data, options);
+            chart4.draw(data, options);
+            return false;
+        }
+    </script>
+}
+<table class="table">
+    <thead>
+        <tr>
+            <td>Time</td>
+            <td>Revent</td>
+            <td>Profit</td>
+        </tr>
+    </thead>
+</table>
+<tbody id="txtbody"></tbody>
+<script id="table-template" type="x-tmpl-mustache">
+    <tr>
+        <td>{{Time}}</td>
+        <td>{{Revent}}</td>
+        <td>{{Profit}}</td>
+
+    </tr>
+</script>
+<div id="chart_div"></div>
+<div id="chart_div1"></div>
+<div id="chart_div2"></div>
+<div id="chart_div3"></div>
+<div id="chart_div4"></div>
+
+

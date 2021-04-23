@@ -1,0 +1,31 @@
+﻿@model List<ShopOnline.Data.Entity.TopCategory>
+@foreach (var category in Model.Where(x => x.ParentId == null))
+{
+    <li class="mega-menu">
+        <a class="level-top" href="shop_grid.html"><span>@category.Name</span></a>
+        <div class="jtv-menu-block-wrapper">
+            <div class="jtv-menu-block-wrapper2">
+                <div class="nav-block jtv-nav-block-center">
+                    <div class="col-1">
+                        <ul class="level0">
+                           
+                            <li class="parent item">
+                                <a href="shop_grid.html"><span>Micromax Canvas</span></a>
+                                <ul class="level1">
+                                    @foreach (var product in Model.Where(x => x.ParentId == category.Id))
+                                    {
+                                        <li> <a href="shop_grid.html"><span>@product.Name</span></a> </li>
+                                    }
+                                </ul>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-2">
+                        <div class="jtv-nav-image1"> <a title="" href="#"><img class="img-responsive" alt="menu_image" src="/admin-template-web/version2/images/menu-img1.jpg"> </a> </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+}

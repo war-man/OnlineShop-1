@@ -1,0 +1,15 @@
+﻿@model List<ShopOnline.Model.SlideModel.SlideViewModel>
+    <div class="brand-logo">
+        <div class="container">
+            <div class="slider-items-products">
+                <div id="brand-logo-slider" class="product-flexslider hidden-buttons">
+                    <div class="slider-items slider-width-col6">
+                        @foreach (var slide in Model)
+                        {
+                            <div class="item"> <a href="#"><img class="img-responsive" src="@slide.PathImage" alt="Image"> </a> </div>
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

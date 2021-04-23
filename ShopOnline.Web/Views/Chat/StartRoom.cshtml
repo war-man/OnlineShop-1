@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewData["Title"] = "StartRoom";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section Scripts{
+
+    <script src="~/admin-web-js/room/index.js" asp-append-version="true"></script>
+    <script>
+        var room = new RoomControl();
+        room.init();
+    </script>
+}
+<button id="txtCreateRoom">Tạo Room</button>
+<span>Input Id room and then connect to Room with this Id</span>
+<input type="text" id="txtRoomInput" name="name" value="" />
+<button id="txtsave">Join</button>
+
+<div class="modal" id="txtModalCreateRoom" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="txtId">Id</label>
+                        <input type="text" class="form-control" id="txtId" placeholder="Enter email">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="txtsaveCreate" class="btn btn-primary">Save changes</button>
+                
+            </div>
+        </div>
+    </div>
+</div>

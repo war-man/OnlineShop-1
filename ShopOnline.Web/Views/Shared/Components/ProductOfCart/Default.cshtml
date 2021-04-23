@@ -1,0 +1,23 @@
+﻿@model List<ShopOnline.Model.CartModel.CartItem>
+@if (Model == null)
+{
+    <div>Chưa có sản phẩm nào</div>
+}
+else
+{
+    @foreach (var product in Model)
+    {
+        <li class="item">
+            <a href="shopping_cart.html" title="Product Title Here" class="product-image"><img class="img-responsive" src="@product.ProductViewModel.PathImage" alt="Product Title Here"></a>
+            <div class="product-details">
+                <div class="access"> <a href="shopping_cart.html" title="Remove This Item" class="jtv-btn-remove"> <span class="icon"></span> Remove </a> </div>
+                <strong>@product.Quantity</strong> x <span class="price">$@product.ProductViewModel.LastPrice</span>
+                <p class="product-name"> <a href="shopping_cart.html">@product.ProductViewModel.Name</a> </p>
+            </div>
+        </li>
+
+
+    }
+
+
+}
